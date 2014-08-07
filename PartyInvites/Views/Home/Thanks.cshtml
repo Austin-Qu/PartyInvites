@@ -12,6 +12,24 @@
     <title>Thanks</title>
 </head>
 <body>
+    @{
+        try
+        {
+            WebMail.SmtpServer = "mail.sfwizard.me";
+            WebMail.SmtpPort = 25;
+            WebMail.EnableSsl = false;
+            WebMail.UserName = "austin@sfwizard.me";
+            WebMail.Password = "wewewejj17";
+            WebMail.From = "austin@sfwizard.me";
+            WebMail.Send("party-host@sfwizard.me", "RSVP Notification",
+            Model.Name + " is " + ((Model.WillAttend ?? false) ? "" : "not")
+            + "attending");
+        }
+        catch (Exception)
+        {
+            @:<b>Sorry - we couldn't send the email to confirm your RSVP.</b>
+}
+    }
     <div>
         <h1>Thank you, @Model.Name!</h1>
         @if (Model.WillAttend == true)
